@@ -28,7 +28,9 @@ app.get('/about',(req,res)=>{
 app.get('/contact',(req,res)=>{
   res.render('contact',{data:contactContent});
 });
-
+app.get('/compose',(req,res)=>{
+  res.render('compose');
+});
 
 
 
