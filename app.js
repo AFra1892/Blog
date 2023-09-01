@@ -29,10 +29,21 @@ app.get('/contact',(req,res)=>{
   res.render('contact',{data:contactContent});
 });
 app.get('/compose',(req,res)=>{
+
+  
+
   res.render('compose');
 });
-
-
+//var btn = document.getElementById('submit-btn');
+  //btn.addEventListener('click',()=>{
+    //console.log(document.getElementById('input-value').value);
+  //});
+app.post('/compose',(req,res)=>{
+  var btn = document.getElementById('submit-btn');
+  btn.addEventListener('click',()=>{
+    console.log(document.getElementById('input-value').value);
+  });
+});
 
 
 
