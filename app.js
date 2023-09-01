@@ -16,34 +16,38 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
-app.get('/home', (req, res) => {
- 
-  res.render('home' ,{data:homeStartingContent});
+//Global Varibales
+const posts = [];
+
+app.get('/', (req, res) => {
+  res.render('home' ,{data:homeStartingContent,posts:posts});
 });
+
 
 app.get('/about',(req,res)=>{
   res.render('about',{data:aboutContent});
 });
 
+
 app.get('/contact',(req,res)=>{
   res.render('contact',{data:contactContent});
 });
+
+
 app.get('/compose',(req,res)=>{
-
-  
-
   res.render('compose');
 });
-//var btn = document.getElementById('submit-btn');
-  //btn.addEventListener('click',()=>{
-    //console.log(document.getElementById('input-value').value);
-  //});
+
+
 app.post('/compose',(req,res)=>{
-  var btn = document.getElementById('submit-btn');
-  btn.addEventListener('click',()=>{
-    console.log(document.getElementById('input-value').value);
+  var post ={
+    title:req.body.postTitle,
+    content:req.body.postBody
+  };
+  posts.push(post);
+  res.redirect('/');
   });
-});
+
 
 
 
