@@ -21,6 +21,9 @@ const posts = [];
 
 app.get('/', (req, res) => {
   res.render('home' ,{data:homeStartingContent,posts:posts});
+
+  
+
 });
 
 
@@ -31,6 +34,7 @@ app.get('/about',(req,res)=>{
 
 app.get('/contact',(req,res)=>{
   res.render('contact',{data:contactContent});
+  
 });
 
 
@@ -48,7 +52,9 @@ app.post('/compose',(req,res)=>{
   res.redirect('/');
   });
 
-
+app.get('/:userId',function(req,res){
+  console.log(req.params.userId);
+})
 
 
 
