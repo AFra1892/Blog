@@ -53,8 +53,15 @@ app.post('/compose',(req,res)=>{
   });
 
 app.get('/:userId',function(req,res){
-  console.log(req.params.userId);
-})
+  for(var i=0;i<posts.length;i++){
+    if(posts[i].title == req.params.userId){
+      console.log("match found");
+    }else{
+      console.log("no match");
+    }
+  };
+  
+});
 
 
 
