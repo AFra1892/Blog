@@ -53,18 +53,20 @@ app.post('/compose',(req,res)=>{
   res.redirect('/');
   });
 
-app.get('/:userId',function(req,res){
-  const requestedTitle = _.lowerCase(req.params.userId);
-  for(var i=0;i<posts.length;i++){
-    const stiredTitle = _.lowerCase(posts[i].title)
-    if(stiredTitle === requestedTitle ){
-      console.log("match found");
-    }else{
-      console.log("no match");
-    }
-  };
+app.get('/posts/:postName',function(req,res){
+    const requestedTitle = _.lowerCase(req.params.postName);
+    posts.forEach(function(post){
+      const storedTitle = _.lowerCase(post.title);
+      if(storedTitle === requestedTitle){
+       
+        res.render('post',{
+          title:post.title,
+          content:post.content
+        });
+      }
+    });
+  });
   
-});
 
 
 
