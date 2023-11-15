@@ -1,5 +1,3 @@
-//jshint esversion:6
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -24,9 +22,6 @@ const posts = [];
 
 app.get('/', (req, res) => {
   res.render('home' ,{data:homeStartingContent,posts:posts});
-
-  
-
 });
 
 
