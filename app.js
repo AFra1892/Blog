@@ -25,6 +25,16 @@ app.get('/', (req, res) => {
   res.render('home' ,{data:homeStartingContent,posts:posts});
 });
 
+app.get('/allposts',async (req, res, next) => {
+  // const { id: postID } = req.params
+  const post = await Post.find({})
+  if (!post) {
+    return next(createCustomError(`No task `, 404))
+  }
+
+  res.status(200).json({ post })
+}
+)
 
 app.get('/about',(req,res)=>{
   res.render('about',{data:aboutContent});
@@ -43,16 +53,16 @@ app.get('/compose',(req,res)=>{
 
 
 app.post('/compose',async(req,res)=>{
-  // var post ={
-  //   title:req.body.postTitle,
-  //   content:req.body.postBody
-  // };
+  var post ={
+    title:req.body.postTitle,
+    content:req.body.postBody
+  };
   const singlePost = await Post.create({
     title:req.body.postTitle,
     text:req.body.postBody
   })
   // res.status(201).json({singlePost})
-  // posts.push(post);
+  posts.push(post);
   res.redirect('/');
   console.log('post added to DB');
   });
